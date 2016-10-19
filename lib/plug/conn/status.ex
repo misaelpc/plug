@@ -87,6 +87,11 @@ defmodule Plug.Conn.Status do
     integer
   end
 
+  # Custom function to handle strings as status codes
+  def code(string) when is_binary(string) do
+    string
+  end
+
   for {atom, code} <- statuses do
     def code(unquote(atom)), do: unquote(code)
   end
